@@ -59,4 +59,8 @@ public class ProcessoBatchBO {
 
         return to;
     }
+
+    public boolean continuaExecucao(String parametroDoJob, Integer idProcessoIniciado) {
+        return false;
+    }
 }

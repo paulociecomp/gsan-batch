@@ -15,6 +15,8 @@ import br.gov.batch.gerardadosleitura.ControleExecucaoAtividade;
 import br.gov.batch.servicos.batch.ProcessoBatchBO;
 import br.gov.batch.to.ControleAtividadeTO;
 import br.gov.model.batch.ProcessoIniciado;
+import br.gov.model.batch.ProcessoParametro;
+import static br.gov.model.batch.ProcessoParametro.NOMES.ATIVIDADE_INICIADA;
 import br.gov.servicos.batch.ProcessoIniciadoRepositorio;
 
 @Named
@@ -52,6 +54,10 @@ public class FinalizarAtividadeJob implements Batchlet{
             logger.info("TERMINOU!!!!!");
             
             String[]  ids =  util.parametroDoJob("idsRota").replaceAll("\"", "").split(",");
+            
+            if (processoBO.continuaExecucao(util.parametroDoJob(ATIVIDADE_INICIADA.toString()), idProcessoIniciado)){
+                
+            }
             
             ControleAtividadeTO to = processoBO.iniciarProximaAtividadeBatch(idProcessoIniciado, idControleAtividade, ids.length);
             
